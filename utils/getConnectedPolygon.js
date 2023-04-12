@@ -1,10 +1,10 @@
+const config = require('../config');
 const data = require('../data.json');
 const { getClosestPointOnSegment, getClosestPoints } = require('./distance');
 const getCoordinates = require('./getCoordinates');
 const polygonOverlap = require('./overlap');
 
-// const WALK_ROOF_DIST = 0.000164579 * 5;
-const WALK_ROOF_DIST = 1.0000 * 5;
+
 
 const root = new Array(data.length + 3);
 root.fill(-1);
@@ -23,7 +23,7 @@ function dfs(index) {
     if (root[i] !== -1) continue;
     if (
       polygonOverlap(getCoordinates(data[index]), getCoordinates(data[i])) ||
-      getClosestPoints(getCoordinates(data[index]), getCoordinates(data[i])).distance <= WALK_ROOF_DIST
+      getClosestPoints(getCoordinates(data[index]), getCoordinates(data[i])).distance <= config.WALK_ROOF_DIST
     ) {
       root[i] = root[index];
       connectedPolygon[root[index]].add(i);
