@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Leaflet Polygon Example</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+      .number-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background-color: #007bff;
+        color: white;
+        font-size: 14px;
+        border-radius: 50%;
+      }
+      .my-icon-number {
+        font-size: 5px;
+        line-height: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" style="height: 500px"></div>
+    <script>
+      function createNumberIcon(number) {
+        return L.divIcon({
+          className: 'number-icon',
+          html: number.toString(),
+        });
+      }
+
+      const map = L.map('map').setView([45.782098, -122.043802], 20);
+      fetch('./data.json').then((res) => {
+        res.json().then((data) => {
+          console.log(data);
+          let counter = -1;
+          data.forEach((item, index) => {
+            counter++;
+            let polygon = L.polygon(item.geometry.coordinates[0]);
+            polygon.addTo(map);
+            const marker = L.marker(polygon.getCenter(), {
+              icon: createNumberIcon(counter),
+            });
+            marker.addTo(map);
+          });
+        });
+      });
+      fetch('./nearestPoints.json').then((res) => {
+        res.json().then((data) => {
+          data.forEach((item, index) => {
+            if (item.title!=='3-2') return
+            console.log(item)
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

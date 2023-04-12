@@ -1,0 +1,19 @@
+{
+  "name": "polygons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "decimal.js": "^10.4.3",
+    "gl-matrix": "^3.4.3"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
