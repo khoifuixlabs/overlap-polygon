@@ -49,6 +49,7 @@ describe('polygonOverlap', () => {
       [105.77990668044663, 10.031978266637623],
       [105.77812150558668, 10.032497325499705],
     ];
+
     expect(polygonOverlap(poly1, poly2)).toBe(true);
   });
   // polygon 0 and polygon 3
@@ -106,24 +107,24 @@ describe('polygonOverlap', () => {
   });
   // Polygon 3 and polygon 5
   it('returns false for very near but not overlap polygons (3 and 5)', () => {
-    const poly1 =         [
+    const poly1 = [
       [45.782336, -122.043605],
       [45.782387, -122.043539],
       [45.78254, -122.04364],
       [45.782499, -122.0437],
-      [45.782336, -122.043605]
-    ]
-    const poly2 =        [
+      [45.782336, -122.043605],
+    ];
+    const poly2 = [
       [45.782438, -122.043564],
       [45.782484, -122.043484],
       [45.782565, -122.043554],
       [45.782519, -122.043625],
-      [45.782438, -122.043564]
-    ]
+      [45.782438, -122.043564],
+    ];
     expect(polygonOverlap(poly1, poly2)).toBe(false);
   });
   // Polygon 3 and polygon 4
-  it('returns false for overlapping polygons (3 and 4)', () => {
+  it('returns true for overlapping polygons (3 and 4)', () => {
     const poly1 = [
       [45.782336, -122.043605],
       [45.782387, -122.043539],
@@ -162,7 +163,7 @@ describe('polygonOverlap', () => {
   });
 
   // Test polygons that share an edge but do not overlap
-  it('returns true for polygons that share an edge but do not overlap', () => {
+  it('returns false for polygons that share an edge but do not overlap', () => {
     const poly1 = [
       [0, 0],
       [0, 2],
@@ -170,30 +171,65 @@ describe('polygonOverlap', () => {
       [2, 0],
     ];
     const poly2 = [
+      [2, 5],
       [2, 0],
-      [2, 2],
       [4, 2],
       [4, 0],
     ];
-    expect(polygonOverlap(poly1, poly2)).toBe(true);
+    expect(polygonOverlap(poly1, poly2)).toBe(false);
   });
-
-  // Test polygons that have the same edge and do not overlap
-  it('returns true for polygons that have the same edge but do not overlap', () => {
+  it('returns false for polygons that share an edge but do not overlap', () => {
     const poly1 = [
-      [0, 0],
-      [0, 2],
-      [2, 2],
-      [2, 0],
+      [105.2, 10.0],
+      [105.2, 10.2],
+      [105.4, 10.2],
+      [105.4, 10.0],
+      [105.2, 10.0],
     ];
     const poly2 = [
-      [2, 0],
-      [2, 2],
-      [0, 2],
-      [0, 0],
+      [105.0, 10.0],
+      [105.0, 10.2],
+      [105.2, 10.2],
+      [105.2, 10.0],
+      [105.0, 10.0],
     ];
-    expect(polygonOverlap(poly1, poly2)).toBe(true);
+    expect(polygonOverlap(poly1, poly2)).toBe(false);
   });
+  it('returns false for polygons that partially share an edge but do not overlap', () => {
+    const poly1 = [
+      [105.2, 10.1],
+      [105.2, 10.3],
+      [105.4, 10.3],
+      [105.4, 10.1],
+      [105.2, 10.1]
+    ];
+    const poly2 = [
+      [105.0, 10.0],
+      [105.0, 10.2],
+      [105.2, 10.2],
+      [105.2, 10.0],
+      [105.0, 10.0]
+    ];
+    expect(polygonOverlap(poly1, poly2)).toBe(false);
+  });
+  it('returns false for polygons that just share a point but do not overlap', () => {
+    const poly1 = [
+      [105.2, 10.2],
+      [105.2, 10.3],
+      [105.4, 10.3],
+      [105.4, 10.2],
+      [105.2, 10.2]
+    ];
+    const poly2 = [
+      [105.0, 10.0],
+      [105.0, 10.2],
+      [105.2, 10.2],
+      [105.2, 10.0],
+      [105.0, 10.0]
+    ];
+    expect(polygonOverlap(poly1, poly2)).toBe(false);
+  });
+
   // Test one polygon completely inside other
   it('returns true for nested polygon', () => {
     const poly1 = [
@@ -283,5 +319,59 @@ describe('polygonOverlap', () => {
       [105.78150136354049, 10.032206461946899],
     ];
     expect(polygonOverlap(poly1, poly2)).toBe(false);
+  });
+  it('returns false for two polygon very close but not overlap', () => {
+    const poly1 = [
+      [105.78150136354049, 10.032206461946899],
+      [105.78023897154412, 10.033116707902465],
+      [105.77968523317378, 10.031790218805824],
+      [105.78091465277777, 10.03078113536823],
+      [105.78168839393408, 10.031461585455745],
+      [105.78150136354049, 10.032206461946899],
+    ];
+    const poly2 = [
+      [105.78001090770096, 10.033064380651197],
+      [105.7794623408659, 10.031592392769014],
+      [105.77794692498145, 10.032814548317248],
+      [105.77840634970636, 10.030917166731996],
+      [105.77926348538773, 10.030383737167341],
+      [105.77945548378051, 10.031275036706788],
+      [105.78001090770096, 10.033064380651197],
+    ];
+    expect(polygonOverlap(poly1, poly2)).toBe(false);
+  });
+  it('returns false for a concave polygon case', () => {
+    const poly1 = [
+      [105.77703830417369, 10.031954505863922],
+      [105.77855393443446, 10.030385289694294],
+      [105.7796971526871, 10.031690127585122],
+      [105.778571255923, 10.030572913766576],
+      [105.77703830417369, 10.031954505863922],
+    ];
+    const poly2 = [
+      [105.77840754857783, 10.030944826103777],
+      [105.77840754857783, 10.030782787324625],
+      [105.77871067462951, 10.030782787324625],
+      [105.77871067462951, 10.030944826103777],
+      [105.77840754857783, 10.030944826103777],
+    ];
+    expect(polygonOverlap(poly1, poly2)).toBe(false);
+  });
+  it('returns true for a concave polygon case', () => {
+    const poly1 = [
+      [105.77703830417369, 10.031954505863922],
+      [105.77855393443446, 10.030385289694294],
+      [105.7796971526871, 10.031690127585122],
+      [105.778571255923, 10.030572913766576],
+      [105.77703830417369, 10.031954505863922],
+    ];
+    const poly2 = [
+      [105.77703915097192, 10.03175501878495],
+      [105.77703915097192, 10.031618565422662],
+      [105.78000978628131, 10.031618565422662],
+      [105.78000978628131, 10.03175501878495],
+      [105.77703915097192, 10.03175501878495],
+    ];
+    expect(polygonOverlap(poly1, poly2)).toBe(true);
   });
 });

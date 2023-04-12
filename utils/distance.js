@@ -1,17 +1,5 @@
 const Decimal = require('decimal.js');
 
-function calculateDistance(point1, point2) {
-  const x1 = point1[0];
-  const y1 = point1[1];
-  const x2 = point2[0];
-  const y2 = point2[1];
-
-  const deltaX = new Decimal(x2, 50).minus(x1);
-  const deltaY = new Decimal(y2, 50).minus(y1);
-  const distance = Decimal.sqrt(deltaX.pow(2).plus(deltaY.pow(2)));
-
-  return distance.toNumber();
-}
 
 function calculateDistanceInFeet(point1, point2) {
   const R = 20902230; // radius of the Earth in feet
