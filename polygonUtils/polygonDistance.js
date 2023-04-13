@@ -75,8 +75,8 @@ function getClosestPoints(poly1, poly2) {
       var dist = calculateDistanceInFeet(p1, closest);
       if (dist < minDist) {
         minDist = dist;
-        closest1 = closest;
-        closest2 = p1;
+        closest1 = p1;
+        closest2 = closest;
       }
     }
   }
@@ -102,5 +102,5 @@ function getClosestPoints(poly1, poly2) {
 
 module.exports = {
   getClosestPointOnSegment,
-  getClosestPoints,
+  getClosestPoints
 };

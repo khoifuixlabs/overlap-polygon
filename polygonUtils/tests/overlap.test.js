@@ -1,4 +1,4 @@
-const polygonOverlap = require('./overlap');
+const polygonOverlap = require('../overlap');
 
 describe('polygonOverlap', () => {
   // Test non-overlapping polygons
@@ -15,6 +15,7 @@ describe('polygonOverlap', () => {
       [3, 5],
       [5, 5],
       [5, 3],
+      [3, 3]
     ];
     expect(polygonOverlap(poly1, poly2)).toBe(false);
   });
