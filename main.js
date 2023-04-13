@@ -1,4 +1,4 @@
-const data = require('./data.json');
+const data = require('./data/inside_box_data.json');
 const fs = require('fs')
 const { getClosestPoints } = require('./utils/distance');
 const getConnectedPolygon = require('./utils/getConnectedPolygon');
@@ -40,13 +40,13 @@ for (let targetIndex = 0; targetIndex < data.length; targetIndex++) {
   }
   console.log(
     targetIndex,
-    'is can walk to:  ',
+    'can walk to:  ',
     getConnectedPolygon(data[targetIndex])
   );
   console.log(
     targetIndex,
     'is overlap with:  ',
-    getOverlapPolygon(data[targetIndex])
+    getOverlapPolygon(data[targetIndex]), '\n'
   );
 }
 

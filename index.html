@@ -35,8 +35,11 @@
         });
       }
 
-      const map = L.map('map').setView([45.782098, -122.043802], 20);
-      fetch('./data.json').then((res) => {
+      const map = L.map('map').setView(          [
+            45.37615036549516,
+            10.222187382038726
+          ], 12);
+      fetch('./data/inside_box_data.json').then((res) => {
         res.json().then((data) => {
           console.log(data);
           let counter = -1;

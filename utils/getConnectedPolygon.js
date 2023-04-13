@@ -1,5 +1,5 @@
 const config = require('../config');
-const data = require('../data.json');
+const data = require('../data/inside_box_data.json');
 const { getClosestPointOnSegment, getClosestPoints } = require('./distance');
 const getCoordinates = require('./getCoordinates');
 const polygonOverlap = require('./overlap');

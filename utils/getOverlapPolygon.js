@@ -1,4 +1,4 @@
-const data = require('../data.json');
+const data = require('../data/inside_box_data.json');
 const getCoordinates = require('./getCoordinates');
 const polygonOverlap = require('./overlap');
 
