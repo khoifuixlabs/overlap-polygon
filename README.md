@@ -15,7 +15,7 @@
 [getClosestPoints](./utils/distance.js#L63)
 - Get two closest points of two polygons
 - Input: two polygon
-- Output: { point1, point2, distance } - two closest poits and its distance
+- Output: { point1, point2, distance } - two closest poits and its distance (in feet unit)
 
 [getConnectedPolygon](./utils/getConnectedPolygon.js#L42)
 - Get a set of polygon that the given polygon can walk to by walking on the roof, using DFS algorithm to find the connected compoment among polygons
