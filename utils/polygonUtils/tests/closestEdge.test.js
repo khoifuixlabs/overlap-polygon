@@ -1,34 +1,33 @@
 const { findClosestEdges } = require('../polygonClosestEdge');
 
 describe('Closest edge of two polygons', () => {
-  // it('#1 closest edge of two polygons', () => {
-  //   const poly1 = [
-  //     [0, 0],
-  //     [0, 2],
-  //     [2, 2],
-  //     [2, 0],
-  //     [0, 0],
-  //   ];
-  //   const poly2 = [
-  //     [3, 3],
-  //     [3, 5],
-  //     [5, 5],
-  //     [5, 3],
-  //     [3, 3],
-  //   ];
-  //   const closestEdges = findClosestEdges(poly1, poly2);
-  //   console.log(closestEdges)
-  //   expect(closestEdges).toEqual([
-  //     [
-  //       [2, 2],
-  //       [2, 0],
-  //     ],
-  //     [
-  //       [3, 3],
-  //       [3, 5],
-  //     ],
-  //   ]);
-  // });
+  it('#1 closest edge of two polygons', () => {
+    const poly1 = [
+      [0, 0],
+      [0, 2],
+      [2, 2],
+      [2, 0],
+      [0, 0],
+    ];
+    const poly2 = [
+      [3, 3],
+      [3, 5],
+      [5, 5],
+      [5, 3],
+      [3, 3],
+    ];
+    const closestEdges = findClosestEdges(poly1, poly2);
+    expect(closestEdges).toEqual([
+      [
+        [0, 2],
+        [2, 2],
+      ],
+      [
+        [5, 3],
+        [3, 3],
+      ],
+    ]);
+  });
   it('#2 closest edge of two polygons', () => {
     const poly1 = [
       [105.77936947683054, 10.033917699625164],

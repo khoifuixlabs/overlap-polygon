@@ -1,13 +1,20 @@
-const { getClosestPoints } = require("./polygonDistance");
+const { getAngle } = require('../geometryUtils/angleBetweenTwoEdges');
+const { pointOnSegment } = require('../geometryUtils/pointOnSegment');
+const { getClosestPointsOfTwoPolygons } = require('./polygonDistance');
 
+
+//get two closest edges between two polygons that has minimum angle 
 function findClosestEdges(poly1, poly2) {
-  const { point1, point2, distance } = getClosestPoints(poly1, poly2);
-  console.log('point1', point1);
-  console.log('point2', point2);
+  // get two closest points of two polygons
+  const { point1, point2, distance } = getClosestPointsOfTwoPolygons(
+    poly1,
+    poly2
+  );
   const closestEdges1 = [];
   const closestEdges2 = [];
 
-  for (let i = 0; i < poly1.length; i++) {
+  // get the edges that contain two closest points
+  for (let i = 0; i < poly1.length - 1; i++) {
     const j = (i + 1) % poly1.length;
     const edge = [poly1[i], poly1[j]];
     if (pointOnSegment(point1, edge)) {
@@ -15,7 +22,7 @@ function findClosestEdges(poly1, poly2) {
     }
   }
 
-  for (let i = 0; i < poly2.length; i++) {
+  for (let i = 0; i < poly2.length - 1; i++) {
     const j = (i + 1) % poly2.length;
     const edge = [poly2[i], poly2[j]];
     if (pointOnSegment(point2, edge)) {
@@ -37,34 +44,7 @@ function findClosestEdges(poly1, poly2) {
       }
     }
   }
-
   return [minAngleEdge1, minAngleEdge2];
-}
-
-function getAngle(edge1, edge2) {
-  const [p1, p2] = edge1;
-  const [q1, q2] = edge2;
-  const [x1, y1] = p1;
-  const [x2, y2] = p2;
-  const [x3, y3] = q1;
-  const [x4, y4] = q2;
-  const angle1 = Math.atan2(y2 - y1, x2 - x1);
-  const angle2 = Math.atan2(y4 - y3, x4 - x3);
-  return angle1 - angle2;
-}
-
-
-function pointOnSegment(point, segment) {
-  const [p1, p2] = segment;
-  const [x, y] = point;
-  const [x1, y1] = p1;
-  const [x2, y2] = p2;
-  return (
-    x >= Math.min(x1, x2) &&
-    x <= Math.max(x1, x2) &&
-    y >= Math.min(y1, y2) &&
-    y <= Math.max(y1, y2)
-  );
 }
 
 

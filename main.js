@@ -1,6 +1,8 @@
 const data = require('./data/inside_box_data.json');
 const fs = require('fs');
-const { getClosestPoints } = require('./polygonUtils/polygonDistance');
+const {
+  getClosestPointsOfTwoPolygons,
+} = require('./polygonUtils/polygonDistance');
 const getConnectedPolygon = require('./polygonUtils/getConnectedPolygon');
 const getOverlapPolygon = require('./polygonUtils/getOverlapPolygon');
 const polygonOverlap = require('./polygonUtils/overlap');
@@ -15,7 +17,7 @@ for (let targetIndex = 0; targetIndex < data.length; targetIndex++) {
   for (let i = 0; i < data.length; i++) {
     if (i === targetIndex) continue;
 
-    const { point1, point2, distance } = getClosestPoints(
+    const { point1, point2, distance } = getClosestPointsOfTwoPolygons(
       getCoordinates(data[targetIndex]),
       getCoordinates(data[i])
     );
