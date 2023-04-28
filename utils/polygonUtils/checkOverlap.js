@@ -1,4 +1,5 @@
-function polygonOverlap(poly1, poly2) {
+// check two polygon overlap
+function checkOveralp(poly1, poly2) {
   if (JSON.stringify(poly1) === JSON.stringify(poly2)) {
     return true;
   }
@@ -42,11 +43,14 @@ function polygonOverlap(poly1, poly2) {
 function isPointInsidePolygon(point, poly) {
   let isInside = false;
   for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-    const xi = poly[i][0], yi = poly[i][1];
-    const xj = poly[j][0], yj = poly[j][1];
+    const xi = poly[i][0],
+      yi = poly[i][1];
+    const xj = poly[j][0],
+      yj = poly[j][1];
 
-    const intersect = ((yi > point[1]) != (yj > point[1])) &&
-      (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi);
+    const intersect =
+      yi > point[1] != yj > point[1] &&
+      point[0] < ((xj - xi) * (point[1] - yi)) / (yj - yi) + xi;
 
     if (intersect) isInside = !isInside;
   }
@@ -72,9 +76,10 @@ function linesOverlap(line1, line2) {
 }
 
 function getLineSide(p1, p2, p) {
-  return Math.sign((p2[0] - p1[0]) * (p[1] - p1[1]) - (p2[1] - p1[1]) * (p[0] - p1[0]));
+  return Math.sign(
+    (p2[0] - p1[0]) * (p[1] - p1[1]) - (p2[1] - p1[1]) * (p[0] - p1[0])
+  );
 }
-
 
 function getEdges(poly) {
   const edges = [];
@@ -105,4 +110,4 @@ function dotProduct([x1, y1], [x2, y2]) {
   return x1 * x2 + y1 * y2;
 }
 
-module.exports = polygonOverlap;
+module.exports = checkOveralp;
