@@ -8,6 +8,13 @@ const { getClosestPointsOfTwoPolygons } = require('./polygonDistance');
 const { polygonTransition } = require('./polygonTransition');
 const { rotatePolygon } = require('./rotatePolygon');
 
+/**
+ *
+ * @param {number[][]} stablePoly
+ * @param {number[][]} flexPoly
+ * @param {Object} config
+ * @returns {number[][]} snapped polygon which is the flexPoly after snapping
+ */
 function getSnappedPolygon(stablePoly, flexPoly, config) {
   const { point1, point2, distance } = getClosestPointsOfTwoPolygons(
     stablePoly,

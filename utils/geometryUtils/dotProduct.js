@@ -1,3 +1,9 @@
+/**
+ * Calculates the dot product of two vectors
+ * @param {number[]} param0
+ * @param {number[]} param1
+ * @returns {number}
+ */
 function dotProduct(a, b) {
   const [ax, ay] = a;
   const [bx, by] = b;
@@ -5,5 +11,5 @@ function dotProduct(a, b) {
 }
 
 module.exports = {
-  dotProduct
-}
+  dotProduct,
+};

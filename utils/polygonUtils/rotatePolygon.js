@@ -1,7 +1,14 @@
+/**
+ *
+ * @param {number[][]} polygon
+ * @param {number} angle
+ * @param {number[]} pivot
+ * @returns {number[][]} polygon after rotation
+ */
 function rotatePolygon(polygon, angle, pivot) {
   let newPolygon = JSON.parse(JSON.stringify(polygon));
   newPolygon.pop();
-  const radians = angle * Math.PI / 180;
+  const radians = (angle * Math.PI) / 180;
   const cos = Math.cos(radians);
   const sin = Math.sin(radians);
 
@@ -15,6 +22,5 @@ function rotatePolygon(polygon, angle, pivot) {
   newPolygon.push(newPolygon[0]);
   return newPolygon;
 }
-
 
 module.exports = { rotatePolygon };

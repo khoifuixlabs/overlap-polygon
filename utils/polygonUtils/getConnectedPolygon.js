@@ -41,7 +41,11 @@ for (let i = 0; i < data.length; i++) {
   }
 }
 
-// get the polygons that target polygon can walk to on the roof 
+/**
+ *
+ * @param {number[][]} polygon
+ * @returns {Set<number[][]>} a set of polygons that target polygon can walk to on the roof
+ */
 function getConnectedPolygon(polygon) {
   let res = new Set();
   for (let i = 0; i < data.length; i++) {

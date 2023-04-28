@@ -3,6 +3,11 @@ const getCoordinates = require('./getCoordinates');
 const checkOveralp = require('./checkOverlap');
 
 // get Set of polygons that overlap with target polygon
+/**
+ *
+ * @param {number[][]} polygon
+ * @returns {Set<number[][]>} a set of polygons that overlap with target polygon
+ */
 function getOverlapPolygon(polygon) {
   let res = new Set();
   for (let i = 0; i < data.length; i++) {

@@ -2,8 +2,13 @@ const { getAngle } = require('../geometryUtils/angleBetweenTwoEdges');
 const { pointOnSegment } = require('../geometryUtils/pointOnSegment');
 const { getClosestPointsOfTwoPolygons } = require('./polygonDistance');
 
-
-//get two closest edges between two polygons that has minimum angle 
+//get two closest edges between two polygons that has minimum angle
+/**
+ *
+ * @param {number[][]} poly1
+ * @param {number[][]} poly2
+ * @returns {number[][][]} two edges of two polygons that has minimum angle and closest distance
+ */
 function findClosestEdges(poly1, poly2) {
   // get two closest points of two polygons
   const { point1, point2, distance } = getClosestPointsOfTwoPolygons(
@@ -46,7 +51,6 @@ function findClosestEdges(poly1, poly2) {
   }
   return [minAngleEdge1, minAngleEdge2];
 }
-
 
 module.exports = {
   findClosestEdges,

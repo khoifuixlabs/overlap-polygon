@@ -1,4 +1,12 @@
-// check two polygon overlap
+const { dotProduct } = require('../geometryUtils/dotProduct');
+const { getLineSideOfPoint } = require('../geometryUtils/getLineSideOfPoint');
+
+/**
+ * Checks if two polygons overlap
+ * @param {number[][]} poly1
+ * @param {number[][]} poly2
+ * @returns {boolean}
+ */
 function checkOveralp(poly1, poly2) {
   if (JSON.stringify(poly1) === JSON.stringify(poly2)) {
     return true;
@@ -40,6 +48,12 @@ function checkOveralp(poly1, poly2) {
   return false;
 }
 
+/**
+ * Checks if a point is inside a polygon
+ * @param {number[]} point
+ * @param {number[][]} poly
+ * @returns {boolean}
+ */
 function isPointInsidePolygon(point, poly) {
   let isInside = false;
   for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
@@ -57,17 +71,23 @@ function isPointInsidePolygon(point, poly) {
   return isInside;
 }
 
+/**
+ * Checks if two segments overlap
+ * @param {number[][]} line1
+ * @param {number[][]} line2
+ * @returns {boolean}
+ */
 function linesOverlap(line1, line2) {
   // Check if the endpoints of line1 are on opposite sides of line2
-  const side1 = getLineSide(line1[0], line1[1], line2[0]);
-  const side2 = getLineSide(line1[0], line1[1], line2[1]);
+  const side1 = getLineSideOfPoint(line1[0], line1[1], line2[0]);
+  const side2 = getLineSideOfPoint(line1[0], line1[1], line2[1]);
   if (side1 * side2 >= 0) {
     return false;
   }
 
   // Check if the endpoints of line2 are on opposite sides of line1
-  const side3 = getLineSide(line2[0], line2[1], line1[0]);
-  const side4 = getLineSide(line2[0], line2[1], line1[1]);
+  const side3 = getLineSideOfPoint(line2[0], line2[1], line1[0]);
+  const side4 = getLineSideOfPoint(line2[0], line2[1], line1[1]);
   if (side3 * side4 >= 0) {
     return false;
   }
@@ -75,12 +95,11 @@ function linesOverlap(line1, line2) {
   return true;
 }
 
-function getLineSide(p1, p2, p) {
-  return Math.sign(
-    (p2[0] - p1[0]) * (p[1] - p1[1]) - (p2[1] - p1[1]) * (p[0] - p1[0])
-  );
-}
-
+/**
+ * Get the edges of a polygon
+ * @param {number[][]} poly
+ * @returns {number[][]} edges
+ */
 function getEdges(poly) {
   const edges = [];
   for (let i = 0; i < poly.length; i++) {
@@ -89,7 +108,11 @@ function getEdges(poly) {
   }
   return edges;
 }
-
+/**
+ * Get the perpendicular vector of a line
+ * @param {number[][]} param0
+ * @returns {number[]}
+ */
 function getPerpendicular([p1, p2]) {
   return [-1 * (p2[1] - p1[1]), p2[0] - p1[0]];
 }
@@ -104,10 +127,6 @@ function project(poly, axis) {
 
 function overlap1D([min1, max1], [min2, max2]) {
   return Math.max(min1, min2) <= Math.min(max1, max2);
-}
-
-function dotProduct([x1, y1], [x2, y2]) {
-  return x1 * x2 + y1 * y2;
 }
 
 module.exports = checkOveralp;

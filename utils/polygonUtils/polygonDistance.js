@@ -25,6 +25,12 @@ function distance(point1, point2) {
   return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
+/**
+ * Caculate the distance between two polygons and return the closest points
+ * @param {number[][]} poly1
+ * @param {number[][]} poly2
+ * @returns {{point1: number[], point2: number[], distance: number}}
+ */
 function getClosestPointsOfTwoPolygons(poly1, poly2) {
   var minDist = Infinity;
   var closest1, closest2;
@@ -39,7 +45,6 @@ function getClosestPointsOfTwoPolygons(poly1, poly2) {
       var q2 = poly2[(j + 1) % poly2.length];
       // get closest point to p1 on edge q1 - q2 of poly2
       var closest = getClosestPointOnSegment(p1, q1, q2);
-
 
       // get distance between p1 and closest point
       var dist = distance(p1, closest);

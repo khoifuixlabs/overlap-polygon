@@ -1,4 +1,9 @@
-//check if a point is on a segment or not
+/**
+ * Check if a point is on a segment
+ * @param {number[]} point
+ * @param {number[][]} segment
+ * @returns {boolean}
+ */
 function pointOnSegment(point, segment) {
   const [x1, y1] = segment[0];
   const [x2, y2] = segment[1];
@@ -27,5 +32,5 @@ function pointOnSegment(point, segment) {
 }
 
 module.exports = {
-  pointOnSegment
-}
+  pointOnSegment,
+};

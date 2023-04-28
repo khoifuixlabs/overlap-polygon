@@ -1,5 +1,12 @@
-const { default: Decimal } = require("decimal.js");
+const { default: Decimal } = require('decimal.js');
 
+/**
+ * Get closest point of given point on a segment
+ * @param {number[]} point
+ * @param {number[]} segStart
+ * @param {number[]} segEnd
+ * @returns {Decimal[]}
+ */
 function getClosestPointOnSegment(point, segStart, segEnd) {
   segStart = [new Decimal(segStart[0], 100), new Decimal(segStart[1], 100)];
   segEnd = [new Decimal(segEnd[0], 100), new Decimal(segEnd[1], 100)];
@@ -43,5 +50,5 @@ function getClosestPointOnSegment(point, segStart, segEnd) {
 }
 
 module.exports = {
-  getClosestPointOnSegment
-}
+  getClosestPointOnSegment,
+};
