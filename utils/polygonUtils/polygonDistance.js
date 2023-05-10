@@ -1,4 +1,5 @@
 const Decimal = require('decimal.js');
+const turf = require('@turf/turf');
 const {
   getClosestPointOnSegment,
 } = require('../geometryUtils/getClosestPointOnSegment');
@@ -103,6 +104,14 @@ function getClosestPointsOfTwoPolygons(poly1, poly2) {
   return { point1: closest1, point2: closest2, distance: minDist };
 }
 
+function pointToPolyDistance(point, poly) {
+  const turfPoint = turf.point(point);
+  const turfPoly = turf.polygon([poly]);
+  const distance = turf.distance(turfPoint, turfPoly);
+  return distance;
+}
+
 module.exports = {
   getClosestPointsOfTwoPolygons,
+  pointToPolyDistance,
 };
