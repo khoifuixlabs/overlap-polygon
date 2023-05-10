@@ -5,9 +5,9 @@ const snapType = {
 
 const config = {
   WALK_ROOF_DIST: 1.0 * 5,
-  SNAP_DEGREE: 20,
+  SNAP_DEGREE: 0,
   SNAP_DISTANCE: 5,
-  SNAP_TYPE: snapType.POLY_TRANSITION,
+  SNAP_TYPE: snapType.EDGE_TRANSITION,
 };
 
 module.exports = { config, snapType };

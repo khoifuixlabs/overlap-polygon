@@ -100,7 +100,6 @@ function getClosestPointsOfTwoPolygons(poly1, poly2) {
   if (typeof closest1[1] !== 'number') closest1[1] = closest1[1].toNumber();
   if (typeof closest2[0] !== 'number') closest2[0] = closest2[0].toNumber();
   if (typeof closest2[1] !== 'number') closest2[1] = closest2[1].toNumber();
-  console.log('mindist', minDist);
   return { point1: closest1, point2: closest2, distance: minDist };
 }
 

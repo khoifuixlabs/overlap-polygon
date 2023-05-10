@@ -57,10 +57,8 @@ function getSnappedPolygon(stablePoly, flexPoly, config) {
 
   // angle between two edges
   let angle = getAngle(closestEdges[0], closestEdges[1]);
-  console.log('helu', config);
 
   if (Math.abs(angle) <= config.SNAP_DEGREE) {
-    console.log('angle <= config.SNAP_DEGREE');
     // rotate the transPoly in two way, CW and CCW
     const rotatedPoly1 = rotatePolygon(transPoly, angle, point1);
     const rotatedPoly2 = rotatePolygon(transPoly, -angle, point1);
@@ -97,8 +95,8 @@ function getSnappedPolygon(stablePoly, flexPoly, config) {
     if (config.SNAP_TYPE === snapType.EDGE_TRANSITION) {
       // keep all points of flexPoly, only change the points of index3 and index4
       const edgeTransitionPoly = [...flexPoly];
-      edgeTransitionPoly[index3] = result[index3];
-      edgeTransitionPoly[index4] = result[index4];
+      edgeTransitionPoly[index3] = transPoly[index3];
+      edgeTransitionPoly[index4] = transPoly[index4];
       return edgeTransitionPoly;
     }
     return transPoly;
