@@ -5,7 +5,7 @@ const { snapType } = require('../../../config');
 const config = {
   WALK_ROOF_DIST: 1.0 * 5,
   SNAP_DEGREE: 2,
-  SNAP_DISTANCE: 5,
+  SNAP_DISTANCE: Infinity,
   SNAP_TYPE: snapType.POLY_TRANSITION,
 };
 

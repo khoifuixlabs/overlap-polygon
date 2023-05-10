@@ -24,7 +24,11 @@ describe('Test getClosestPolygonFromPoint', () => {
       [105.50625578679251, 11.034808910660374],
     ];
     const point = [105.70618390169972, 10.781034888527373];
-    const result = getClosestPolygonFromPoint(point, [poly1, poly2, poly3]);
+    const result = getClosestPolygonFromPoint(point, [
+      poly1,
+      poly2,
+      poly3,
+    ]).closestPolygon;
     expect(result).toEqual(poly3);
   });
   it('#2', () => {
@@ -60,7 +64,7 @@ describe('Test getClosestPolygonFromPoint', () => {
       poly2,
       poly3,
       poly4,
-    ]);
+    ]).closestPolygon;
     expect(result).toEqual(poly4);
   });
   it('#3', () => {
@@ -78,7 +82,10 @@ describe('Test getClosestPolygonFromPoint', () => {
       [105.34533803576903, 9.441711480485608],
     ];
     const point = [105.70618390169972, 10.781034888527373];
-    const result = getClosestPolygonFromPoint(point, [poly1, poly2]);
+    const result = getClosestPolygonFromPoint(point, [
+      poly1,
+      poly2,
+    ]).closestPolygon;
     expect(result).toEqual(poly1);
   });
 });

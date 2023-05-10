@@ -61,7 +61,6 @@ describe('utils/polygonUtils/tests/getSnappedPoint', () => {
     ];
     const point = [105.79376501981187, 10.199845799101553];
     const snappedPoint = getSnappedPoint(point, poly);
-    console.log(snappedPoint);
     let isOnSegment = false;
     for (let i = 0; i < poly.length - 1; i++) {
       const p1 = poly[i];

@@ -3,12 +3,7 @@ const turf = require('@turf/turf');
 const {
   getClosestPointOnSegment,
 } = require('../geometryUtils/getClosestPointOnSegment');
-
-function distance(point1, point2) {
-  const [x1, y1] = point1;
-  const [x2, y2] = point2;
-  return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-}
+const { twoPointsDistanceInFeet } = require('../geometryUtils');
 
 /**
  * Caculate the distance between two polygons and return the closest points
@@ -32,7 +27,7 @@ function getClosestPointsOfTwoPolygons(poly1, poly2) {
       var closest = getClosestPointOnSegment(p1, q1, q2);
 
       // get distance between p1 and closest point
-      var dist = distance(p1, closest);
+      var dist = twoPointsDistanceInFeet(p1, closest);
 
       if (dist < minDist) {
         minDist = dist;
@@ -41,7 +36,7 @@ function getClosestPointsOfTwoPolygons(poly1, poly2) {
       }
 
       //get distance between two vertices
-      dist = distance(q1, p1);
+      dist = twoPointsDistanceInFeet(q1, p1);
       if (dist < minDist) {
         minDist = dist;
         closest1 = p1;
@@ -63,7 +58,7 @@ function getClosestPointsOfTwoPolygons(poly1, poly2) {
 
       // get distance between p1 and closest point
 
-      var dist = distance(p1, closest);
+      var dist = twoPointsDistanceInFeet(p1, closest);
       if (dist < minDist) {
         minDist = dist;
         closest1 = closest;
@@ -72,7 +67,7 @@ function getClosestPointsOfTwoPolygons(poly1, poly2) {
 
       //get distance between two vertices
 
-      dist = distance(q1, p1);
+      dist = twoPointsDistanceInFeet(q1, p1);
       if (dist < minDist) {
         minDist = dist;
         closest1 = q1;

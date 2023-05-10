@@ -1,15 +1,22 @@
+const turf = require('@turf/turf');
+
 /**
- * Returns the distance between two points
+ * Returns the distance between two points in feet
  * @param {number[]} point1
  * @param {number[]} point2
  * @returns {number}
  */
-function twoPointsDistance(point1, point2) {
-  const [x1, y1] = point1;
-  const [x2, y2] = point2;
-  return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+function twoPointsDistanceInFeet(point1, point2) {
+  try {
+    const turfPoint1 = turf.point(point1);
+    const turfPoint2 = turf.point(point2);
+    const distance = turf.distance(turfPoint1, turfPoint2, { units: 'feet' });
+    return distance;
+  } catch (error) {
+    return Infinity;
+  }
 }
 
 module.exports = {
-  twoPointsDistance,
+  twoPointsDistanceInFeet,
 };

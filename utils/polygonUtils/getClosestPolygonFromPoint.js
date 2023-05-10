@@ -1,13 +1,13 @@
 const {
   getClosestPointOnSegment,
-  twoPointsDistance,
+  twoPointsDistanceInFeet,
 } = require('../geometryUtils');
 
 /**
  *
  * @param {number[]} point
  * @param {number[][][]} polygons
- * @returns {number[][]} closest polygon from point
+ * @returns {{closestPolygon: number[][], minDist: number}} closest polygon from point and the distance
  */
 function getClosestPolygonFromPoint(point, polygons) {
   let minDist = Infinity;
@@ -20,7 +20,7 @@ function getClosestPolygonFromPoint(point, polygons) {
       closestPolygon = polygon;
     }
   }
-  return closestPolygon;
+  return { closestPolygon, minDist };
 }
 
 function pointToPolyDist(point, polygon) {
@@ -29,7 +29,7 @@ function pointToPolyDist(point, polygon) {
     const p1 = polygon[i];
     const p2 = polygon[(i + 1) % polygon.length];
     const closestPoint = getClosestPointOnSegment(point, p1, p2);
-    const dist = twoPointsDistance(point, closestPoint);
+    const dist = twoPointsDistanceInFeet(point, closestPoint);
     if (dist < minDist) {
       minDist = dist;
     }
