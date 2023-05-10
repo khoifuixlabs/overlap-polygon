@@ -2,7 +2,6 @@
 
 const { pointOnSegment } = require('../../geometryUtils');
 const { getSnappedPoint } = require('../getSnappedPoint');
-const { pointToPolyDistance } = require('../polygonDistance');
 
 describe('utils/polygonUtils/tests/getSnappedPoint', () => {
   it('#1', () => {

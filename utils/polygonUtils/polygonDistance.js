@@ -4,22 +4,6 @@ const {
   getClosestPointOnSegment,
 } = require('../geometryUtils/getClosestPointOnSegment');
 
-function calculateDistanceInFeet(point1, point2) {
-  const R = 20902230; // radius of the Earth in feet
-  const lat1 = (point1[0] * Math.PI) / 180;
-  const lon1 = (point1[1] * Math.PI) / 180;
-  const lat2 = (point2[0] * Math.PI) / 180;
-  const lon2 = (point2[1] * Math.PI) / 180;
-  const dLat = lat2 - lat1;
-  const dLon = lon2 - lon1;
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distance = R * c;
-  return distance;
-}
-
 function distance(point1, point2) {
   const [x1, y1] = point1;
   const [x2, y2] = point2;
@@ -104,14 +88,6 @@ function getClosestPointsOfTwoPolygons(poly1, poly2) {
   return { point1: closest1, point2: closest2, distance: minDist };
 }
 
-function pointToPolyDistance(point, poly) {
-  const turfPoint = turf.point(point);
-  const turfPoly = turf.polygon([poly]);
-  const distance = turf.distance(turfPoint, turfPoly);
-  return distance;
-}
-
 module.exports = {
   getClosestPointsOfTwoPolygons,
-  pointToPolyDistance,
 };
