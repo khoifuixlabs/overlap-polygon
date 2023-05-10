@@ -1,6 +1,6 @@
 const {
   getLineSideOfPoint,
-} = require('../../geometryUtils/getLineSideOfPoint');
+} = require('../getLineSideOfPoint');
 
 describe('getLineSide', () => {
   test('returns -1 if p is on the right of the line', () => {

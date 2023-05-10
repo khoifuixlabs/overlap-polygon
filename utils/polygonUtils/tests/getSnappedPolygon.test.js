@@ -1,10 +1,12 @@
 const { getSnappedPolygon } = require('../getSnappedPolygon');
 const checkOveralp = require('../checkOverlap');
 const { getClosestPointsOfTwoPolygons } = require('../polygonDistance');
+const { snapType } = require('../../../config');
 const config = {
   WALK_ROOF_DIST: 1.0 * 5,
   SNAP_DEGREE: 2,
   SNAP_DISTANCE: 5,
+  SNAP_TYPE: snapType.POLY_TRANSITION,
 };
 
 describe('Test getSnappedPolygon function, if meet condition, polygon will be snapped, distance = 0 and not overlap', () => {
